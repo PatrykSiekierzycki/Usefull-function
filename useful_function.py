@@ -1,3 +1,5 @@
+import os
+
 
 """
 Brief: check if in string are dot or minus. Also check at what index is for minus.
@@ -31,8 +33,6 @@ def isNumberWithDotOrMinus(user_input):
             return False
     else:
         return False
-
-
 
 """
 Brief: Function for prepere numeric input: remove all whitespace sign and change all "," to ".".
@@ -326,3 +326,99 @@ def getValueFromColection(collection, first_text = None, if_not_in_col = None):
                 continue
             else:
                 continue
+
+"""
+Brief: Get number from user. Number retuned by function can be float or int type.
+Param: 
+    first_str: displaied before user may give number.
+    inf_no_number: display when user's input is not a number.
+    dtype: data type of returned value.
+Return: User's input, only if user's input is number. Returned value may have two possible data types: int or float. 
+"""
+def getNumber(first_str=None, inf_no_number=None, dtype="int"):
+
+    # Check is dtype has proper value.
+    properDataTypes = ["int", "float"]
+
+    if dtype not in properDataTypes:
+        exit(1)
+
+    while True:
+
+        # Check if "first_str" parametr has other value than "None".
+        if first_str == None:
+            user_input = input()
+        else:
+            user_input = input(first_str)
+
+        # Check if user do not press only enter
+        if len(user_input) == 0:  # If press only enter
+            if inf_no_number == None:  # If there is no set "first_str"
+                continue
+            else:  # If "first_str" is setted
+                print(inf_no_number)
+                continue
+
+        user_input = prepereNumericInput(user_input)
+
+        number = user_input.isnumeric()  # Check if number is numeric
+
+        # Check if "user_input" is a minus number or with dot.
+        if number is False:
+
+            pack = isNumberWithDotOrMinus(user_input)
+            number = None
+
+            # If pack is tuple unpack data to variables
+            if type(pack) is tuple:
+                number = pack[0]
+            elif type(pack) == bool:
+                number = pack
+
+        # Filter: Check again if "number" is "True".
+        if number is False:
+            if inf_no_number == None:
+                continue
+            else:
+                print(inf_no_number)
+                continue
+
+        # Prepere expected data type
+        if dtype == "int":
+            user_input = int(float(user_input))
+        elif dtype == "float":
+            user_input = float(user_input)
+
+        return user_input
+
+"""
+Brief: Check if file exist. If exist open, read, and return as str. 
+Param: 
+    path: str - path to file
+    wrong_dtype_of_path_inf - display when datatype of path is not str
+    no_exist_inf - display if file dosen't exist
+Return str - whole content of file
+"""
+def openFileAndRead(path, wrong_dtype_of_path_inf=None, no_exist_inf=None):
+
+    if type(path) is not str:
+        if wrong_dtype_of_path_inf is None:
+            exit(1)
+        else:
+            print(wrong_dtype_of_path_inf)
+            exit(1)
+
+    exist = os.path.exists(path)
+
+    if exist is True:
+        text = ""
+        with open(path, "r") as file:
+            for line in file:
+                text += line
+            return text
+    else:
+        if no_exist_inf is None:
+            exit(1)
+        else:
+            print(no_exist_inf)
+            exit(1)
