@@ -4,52 +4,72 @@ It is not a program, but few usefull functions to get from user proper input.
 2. getNegativeNumber - get from user negative number (int or float)
 3. getPositiveNumber - get from user positive number (int or float)
 4. getValueFromColection - get from user value from colection.
+5. getNumber - get number from user (int or float)
+6. openFileAndRead - return content of file.
 
 The functions "force" user to pass a proper value. The function handle protection.
 
 More information about each function:
 1. getNumberRange:
     Param:
-        - first_str - it is a text which will be display at begining to inform user what he will pass.
+        - first_str - it is a text which will be display at begining to inform user what he should pass.
         - min - minimal value for range. It can be int or float type.
         - max - maximal value for range. It can be int or float type.
-        - not_in_range_str - it is a text to inform user, that the value what he pass is out of range.
-        - inf_no_number - it is a text to inform user, that the value is not even a number.
+        - not_in_range_str - it is a text or oder value, to inform user, that the value what he pass is out of range.
+        - inf_no_number - it is a text or other value, to inform user, that the value is not even a number.
         - dtype - is a type of returning data. Possible values: "int" and "float". Example of use: dtype="float".
     Return:
-        - int or float - the programmist decide what data type function will return. See: above.
+        - int or float - Number that user pass and it is in range. Programmist decide what data type function will return. See: above.
 Information: if dtype has no proper value, function close the program.
 Information: if first_str, not_in_range_str or inf_no_number the value is: None, function do not display that text.
 
 
 2. getNegativeNumber:
     Param:
-        - first_str - it is a text which will be display at begining to inform user what he will pass.
-        - not_neg_num - it is a text to inform user, about that the value he pass is not a negative value.
-        - inf_no_number - it is a text to inform user, that the value is not even a number.
+        - first_str - it is a text or other value, which will be display at begining to inform user what he will pass.
+        - not_neg_num - it is a text or other value, to inform user, about that the value he pass is not a negative value.
+        - inf_no_number - it is a text or other value, to inform user, that the value is not even a number.
         - dtype - is a type of returning data. Possible values: "int" and "float". Example of use: dtype="float".
     Return:
-        - int or float type negative number.
+        - int or float - User's number if it is a negative number.
 Information: if dtype has no proper value, function close the program.
 Information: if first_str, not_neg_num or inf_no_number the value is: None, function do not display that text.
 Information: Do not accept 0.
 
 3. getPositiveNumber:
     Param:
-        - first_str - it is a text which will be display at begining to inform user what he will pass.
-        - not_pos_num - it is a text to inform user, about that the value he pass is not a positive value.
-        - inf_no_number - it is a text to inform user, that the value is not even a number.
+        - first_str - it is a text or other value, which will be display at begining to inform user what he should pass.
+        - not_pos_num - it is a text or other value, to inform user, about that the value he pass is not a positive value.
+        - inf_no_number - it is a text or other value, to inform user, that the value is not even a number.
         - dtype - is a type of returning data. Possible values: "int" and "float". Example of use: dtype="float".
     Return:
-        - int or float type positive number.
+        - int or float - user's number if it is a positive number.
 Information: if dtype has no proper value, function close the program.
-Information: if first_str, not_pos_num or inf_no_number the value is: None, function do not display that text.
+Information: if first_str, not_pos_num or inf_no_number the value is: None, function do not display that text or other value.
 Information: accept 0.
 
 4. getValueFromColection:
     Param:
         - collection - the collection type with possible values, that we give user to choose.
-        - first_str - it is a text which will be display at begining to inform user what he will pass.
-        - if_not_in_col - is a type of returning data. Possible values: "int" and "float". Example of use: dtype="float".
+        - first_str - it is a text or other value, which will be display at begining to inform user what he will pass.
+        - if_not_in_col -  - it is a text or other value, to inform user, that the value is not a proper option.
     Return:
-        Only one option from collection.
+        Only one option from collection choosed by user.
+
+5. getNumber:
+	Param: 
+		- first_str - it is a text  or other value, which will be display at begining to inform user what he should pass.
+		- inf_no_number - it is a text or other value, to inform user, that the value is not even a number.
+		- dtype - is a type of returning data. Possible values: "int" and "float". 
+	Return:
+		- int or float - number from user, if user pass proper value.
+Information: if dtype has no proper value, function close the program.
+Information: if first_str, not_pos_num or inf_no_number the value is: None, function do not display that text or other value.
+
+6. openFileAndRead:
+	Param:
+		- path - path to the file to open (type: str)
+		- wrong_dtype_of_path_inf - text or other value, to inform user, that the path is not a str type.
+		- no_exist_inf - text or other value, to inform user, that the path don't exist.
+	Return:
+		str - content of the file
